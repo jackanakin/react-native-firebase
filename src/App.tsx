@@ -8,12 +8,17 @@
  * @format
  */
 
+import RootProvider from '@providers/_RootProvider';
 import SignInScreen from '@screens/SignIn/SignInScreen';
 import React from 'react';
 
 const App = () => {
 
-  return <SignInScreen />;
+  return (
+    <RootProvider>
+      <SignInScreen />
+    </RootProvider>
+  );
 };
 
 

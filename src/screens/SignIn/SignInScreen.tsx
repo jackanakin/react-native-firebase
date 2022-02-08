@@ -8,33 +8,34 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Button,
     SafeAreaView,
     ScrollView,
-    StatusBar,
-    useColorScheme,
+    Text,
+    View,
 } from 'react-native';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
-import {
-    Colors,
-} from 'react-native/Libraries/NewAppScreen';
+import { useAuthentication } from '@providers/AuthenticationProvider';
 
 const SignInScreen = () => {
-    const isDarkMode = useColorScheme() === 'dark';
-
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
+    const { user, signInWithGoogle, signOut } = useAuthentication();
 
     return (
-        <SafeAreaView style={backgroundStyle}>
-            <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <SafeAreaView>
             <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}>
-                <Button title='SIGN-IN' onPress={() => console.log("SIGNIN")} />
+                contentInsetAdjustmentBehavior="automatic">
+                <GoogleSigninButton
+                    size={GoogleSigninButton.Size.Wide}
+                    color={GoogleSigninButton.Color.Dark}
+                    onPress={signInWithGoogle}
+                />
+                <Button title='SIGN-OUT' onPress={signOut} />
+                <View>
+                    <Text>Welcome {user?.email}</Text>
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
