@@ -8,16 +8,20 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native';
+
 import RootProvider from '@providers/_RootProvider';
-import SignInScreen from '@screens/SignIn/SignInScreen';
 import React from 'react';
+import Routes from '@routes/routes';
 
 const App = () => {
 
   return (
-    <RootProvider>
-      <SignInScreen />
-    </RootProvider>
+    <NavigationContainer>
+      <RootProvider>
+        <Routes />
+      </RootProvider>
+    </NavigationContainer>
   );
 };
 

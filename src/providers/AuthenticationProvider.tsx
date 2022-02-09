@@ -66,7 +66,7 @@ const AuthenticationProvider: React.FC = ({ children }) => {
     // Handle user state changes
     function onAuthStateChanged(newUser: FirebaseAuthTypes.User | null) {
         console.log("onAuthStateChanged=" + new Date());
-        console.log(newUser?.email);
+        console.log(newUser);
         setUser(newUser);
     }
 
